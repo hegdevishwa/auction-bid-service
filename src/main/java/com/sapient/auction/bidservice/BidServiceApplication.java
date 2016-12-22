@@ -1,9 +1,12 @@
 package com.sapient.auction.bidservice;
 
 import com.sapient.auction.bidservice.configuration.BidServiceConfiguration;
-import com.sapient.auction.bidservice.controllers.BidResource;
 import com.sapient.auction.bidservice.domain.dao.impl.BidDaoImpl;
 import com.sapient.auction.bidservice.domain.model.Bid;
+import com.sapient.auction.bidservice.exception.DataNotFoundException;
+import com.sapient.auction.bidservice.exception.DataNotFoundExceptionMapper;
+import com.sapient.auction.bidservice.exception.GenericExceptionMapper;
+import com.sapient.auction.bidservice.resource.BidResource;
 import com.sapient.auction.bidservice.services.BidService;
 import com.sapient.auction.bidservice.services.impl.BidServiceImpl;
 
@@ -37,6 +40,8 @@ public class BidServiceApplication extends Application<BidServiceConfiguration> 
 		final BidDaoImpl bidDao = new BidDaoImpl(hibernate.getSessionFactory());
 		final BidService bidService = new BidServiceImpl(bidDao);
 		final BidResource bidResource = new BidResource(bidService);
+		environment.jersey().register(new DataNotFoundExceptionMapper());
+		environment.jersey().register(new GenericExceptionMapper());
 
 		environment.jersey().register(bidResource);
 	}

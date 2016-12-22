@@ -3,16 +3,7 @@ package com.sapient.auction.bidservice.services;
 
 import com.sapient.auction.bidservice.domain.model.Bid;
 
-/**
- * @author avish9 Service for operating upon {@link Bid} objects.
- */
 public interface BidService {
-
-	/**
-	 * @param bidId
-	 * @return bid object of given item id
-	 */
-	public Bid findByBidId(Integer itemID);
 
 	/**
 	 * placed a bid of current user
@@ -20,4 +11,7 @@ public interface BidService {
 	 * @param bid
 	 */
 	public void createBid(Bid bid);
+
+	public Bid findHeighestBidOfItem(Integer itemId);
+
 }

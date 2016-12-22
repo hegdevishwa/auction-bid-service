@@ -7,11 +7,10 @@ import org.apache.log4j.Logger;
 
 import com.sapient.auction.bidservice.domain.dao.BidDao;
 import com.sapient.auction.bidservice.domain.model.Bid;
+import com.sapient.auction.bidservice.exception.DataNotFoundException;
 import com.sapient.auction.bidservice.services.BidService;
 
-/**
- * @author avish9 Basic {@link BidService} implementation.
- */
+
 @Singleton
 public class BidServiceImpl implements BidService {
 
@@ -28,10 +27,17 @@ public class BidServiceImpl implements BidService {
 	public void createBid(Bid bid) {
 
 		LOGGER.info("bid details is goiong to save");
-			bidDao.create(bid);
+		bidDao.create(bid);
 	}
 
-	public Bid findByBidId(Integer id) {
-		return bidDao.findByBidId(id);
+	@Override
+	public Bid findHeighestBidOfItem(Integer itemId) {
+
+		Bid bid = bidDao.findHeighestBidOfItem(itemId);
+		if (bid == null) {
+			throw new DataNotFoundException("Bid details not found for the gien Item id");
+		}
+		return bid;
+
 	}
 }

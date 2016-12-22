@@ -9,7 +9,7 @@ database:
   password: admin
 
   # the JDBC URL
-  url: jdbc:mysql://10.150.238.32:3306/auctiondb
+  url: jdbc:mysql://localhost:3306/auctiondb
 
   # any properties specific to your JDBC driver:
   properties:
@@ -39,3 +39,4 @@ server:
   adminConnectors:
   - type: http
     port: 9001
+

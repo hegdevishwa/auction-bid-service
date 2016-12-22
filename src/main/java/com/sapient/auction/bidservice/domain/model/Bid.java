@@ -5,22 +5,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * @author avish9 Resource representing a bid within the system.
- */
+import org.hibernate.annotations.Generated;
+
+
 @Entity
 public class Bid {
 
 	/** The bidid of bid. */
 	@Id
 	@Column(name = "bid_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bidId;
 
 	/** itemid of given item. */

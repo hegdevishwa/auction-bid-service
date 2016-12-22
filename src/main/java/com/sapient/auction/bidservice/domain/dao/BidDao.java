@@ -1,8 +1,6 @@
 /* Copyright (C) 2016 Sapient. All Rights Reserved. */
 package com.sapient.auction.bidservice.domain.dao;
 
-import java.util.List;
-
 import com.sapient.auction.bidservice.domain.model.Bid;
 
 /**
@@ -20,6 +18,6 @@ public interface BidDao {
 
 	public Bid findByBidId(Integer id);
 
-	public List<Bid> findByItemId(Integer itemID);
+	public Bid findHeighestBidOfItem(Integer itemID);
 
 }

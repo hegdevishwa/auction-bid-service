@@ -1,9 +1,8 @@
 /* Copyright (C) 2016 Sapient. All Rights Reserved. */
 package com.sapient.auction.bidservice.domain.dao.impl;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.sapient.auction.bidservice.domain.dao.BidDao;
@@ -11,9 +10,7 @@ import com.sapient.auction.bidservice.domain.model.Bid;
 
 import io.dropwizard.hibernate.AbstractDAO;
 
-/**
- * @author avish9 JDBC DAO implementation for {@link Bid}.
- */
+
 public class BidDaoImpl extends AbstractDAO<Bid> implements BidDao {
 
 	private static final Logger LOGGER = Logger.getLogger(BidDaoImpl.class);
@@ -26,23 +23,24 @@ public class BidDaoImpl extends AbstractDAO<Bid> implements BidDao {
 		super(factory);
 	}
 
+	@Override
 	public int create(Bid bid) {
-		return persist(bid).getBidId();
+		int bidId = persist(bid).getBidId();
+		return bidId;
 	}
 
+	@Override
 	public Bid findByBidId(Integer id) {
 		return get(id);
 	}
 
 	@Override
-	public List<Bid> findByItemId(Integer itemID) {
+	public Bid findHeighestBidOfItem(Integer itemId) {
 
-		return null;
+		String hql = "from Bid where bidPrice=(select max(bidPrice) from Bid where itemId= :item_id) and itemId= :item_id";
+
+		Query query = currentSession().createQuery(hql).setInteger("item_id", itemId);
+		return uniqueResult(query);
 	}
-
-	/*
-	 * public List<Bid> findAll() { return
-	 * list(namedQuery("com.example.helloworld.core.Person.findAll")); }
-	 */
 
 }
