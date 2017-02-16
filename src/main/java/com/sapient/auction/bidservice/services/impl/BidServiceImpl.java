@@ -10,7 +10,9 @@ import com.sapient.auction.bidservice.domain.model.Bid;
 import com.sapient.auction.bidservice.exception.DataNotFoundException;
 import com.sapient.auction.bidservice.services.BidService;
 
-
+/**
+ * @author avish9 Basic {@link BidService} implementation.
+ */
 @Singleton
 public class BidServiceImpl implements BidService {
 

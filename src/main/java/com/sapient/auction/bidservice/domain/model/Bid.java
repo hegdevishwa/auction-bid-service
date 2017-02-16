@@ -11,7 +11,9 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Generated;
 
-
+/**
+ * @author avish9 Resource representing a bid within the system.
+ */
 @Entity
 public class Bid {
 

@@ -10,7 +10,9 @@ import com.sapient.auction.bidservice.domain.model.Bid;
 
 import io.dropwizard.hibernate.AbstractDAO;
 
-
+/**
+ * @author avish9 JDBC DAO implementation for {@link Bid}.
+ */
 public class BidDaoImpl extends AbstractDAO<Bid> implements BidDao {
 
 	private static final Logger LOGGER = Logger.getLogger(BidDaoImpl.class);

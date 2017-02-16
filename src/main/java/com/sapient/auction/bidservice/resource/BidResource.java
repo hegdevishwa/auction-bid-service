@@ -17,7 +17,9 @@ import com.sapient.auction.bidservice.services.BidService;
 
 import io.dropwizard.hibernate.UnitOfWork;
 
-
+/**
+ * @author avish9 Controller for {@link Bid} resources.
+ */
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -52,7 +54,7 @@ public class BidResource {
 		LOGGER.info("Method: placedBid called");
 
 		bidService.createBid(bid);
-		return Response.ok().build();
+		return null;
 	}
 
 	@GET
